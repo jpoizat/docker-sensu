@@ -1,14 +1,14 @@
 FROM ubuntu:zesty-20170411
 MAINTAINER Shane Starcher <shanestarcher@gmail.com>
 
-ENV SENSU_VERSION=1.1.1-1
+ENV SENSU_VERSION=1.2.0-1
 
 
 RUN \
     apt-get update &&\
     apt-get install -y curl ca-certificates apt-transport-https &&\
-    curl -s https://sensu.global.ssl.fastly.net/apt/pubkey.gpg | apt-key add - &&\
-    echo "deb     https://sensu.global.ssl.fastly.net/apt xenial main" > /etc/apt/sources.list.d/sensu.list &&\
+    curl -s https://repositories.sensuapp.org/apt/pubkey.gpg | apt-key add - &&\
+    echo "deb     https://repositories.sensuapp.org/apt xenial main" > /etc/apt/sources.list.d/sensu.list &&\
     apt-get update &&\
     apt-get install -y sensu=${SENSU_VERSION} &&\
     rm -rf /opt/sensu/embedded/lib/ruby/gems/2.4.0/{cache,doc}/* && \
